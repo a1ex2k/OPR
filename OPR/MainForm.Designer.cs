@@ -29,15 +29,15 @@ namespace OPR
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint5 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "1,4,-2,0");
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint6 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, "10,8,3,2");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "1,4,-2,0");
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(5D, "10,8,3,2");
             this.funcTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.limitsGridView = new System.Windows.Forms.DataGridView();
@@ -66,19 +66,26 @@ namespace OPR
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.par2TextBox = new System.Windows.Forms.TextBox();
             this.methodcomboBox = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.resultlabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button2 = new System.Windows.Forms.Button();
-            this.resultlabel = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.enableStartPoint = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.limitsGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -118,29 +125,29 @@ namespace OPR
             this.limitsGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.limitsGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.limitsGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.limitsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.limitsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.limitsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.limitsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Left,
             this.Sign,
             this.Right});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.limitsGridView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.limitsGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.limitsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.limitsGridView.EnableHeadersVisualStyles = false;
             this.limitsGridView.GridColor = System.Drawing.Color.Gainsboro;
@@ -150,17 +157,17 @@ namespace OPR
             this.limitsGridView.Name = "limitsGridView";
             this.limitsGridView.ReadOnly = true;
             this.limitsGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.limitsGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.limitsGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.limitsGridView.RowHeadersWidth = 27;
-            dataGridViewCellStyle12.Padding = new System.Windows.Forms.Padding(2);
-            this.limitsGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(2);
+            this.limitsGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.limitsGridView.RowTemplate.Height = 26;
             this.limitsGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.limitsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -382,7 +389,7 @@ namespace OPR
             // 
             // par1TextBox
             // 
-            this.par1TextBox.Location = new System.Drawing.Point(207, 62);
+            this.par1TextBox.Location = new System.Drawing.Point(131, 61);
             this.par1TextBox.Name = "par1TextBox";
             this.par1TextBox.Size = new System.Drawing.Size(54, 23);
             this.par1TextBox.TabIndex = 17;
@@ -391,11 +398,11 @@ namespace OPR
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 65);
+            this.label7.Location = new System.Drawing.Point(19, 64);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(156, 15);
+            this.label7.Size = new System.Drawing.Size(62, 15);
             this.label7.TabIndex = 18;
-            this.label7.Text = "Шаг для перебора по сетке";
+            this.label7.Text = "Шаг x1, x2";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // groupBox2
@@ -418,7 +425,7 @@ namespace OPR
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(398, 89);
+            this.button1.Location = new System.Drawing.Point(398, 110);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 32);
             this.button1.TabIndex = 16;
@@ -428,6 +435,14 @@ namespace OPR
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.enableStartPoint);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.par2TextBox);
             this.groupBox3.Controls.Add(this.methodcomboBox);
@@ -435,26 +450,88 @@ namespace OPR
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.par1TextBox);
-            this.groupBox3.Location = new System.Drawing.Point(12, 316);
+            this.groupBox3.Location = new System.Drawing.Point(12, 310);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(529, 143);
+            this.groupBox3.Size = new System.Drawing.Size(529, 162);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Параметры";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(191, 61);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(54, 23);
+            this.textBox4.TabIndex = 27;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.Location = new System.Drawing.Point(302, 121);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(45, 23);
+            this.textBox2.TabIndex = 25;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(277, 123);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(19, 15);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "x2";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox3.Location = new System.Drawing.Point(302, 93);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(45, 23);
+            this.textBox3.TabIndex = 23;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(277, 95);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(19, 15);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "x1";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(19, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(58, 15);
+            this.label13.TabIndex = 22;
+            this.label13.Text = "Точность";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(131, 90);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(54, 23);
+            this.textBox1.TabIndex = 21;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(19, 96);
+            this.label12.Location = new System.Drawing.Point(19, 122);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(170, 15);
+            this.label12.Size = new System.Drawing.Size(104, 15);
             this.label12.TabIndex = 20;
-            this.label12.Text = "Количество случайных точек\r\n";
+            this.label12.Text = "Cлучайных точек\r\n";
             this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // par2TextBox
             // 
-            this.par2TextBox.Location = new System.Drawing.Point(207, 93);
+            this.par2TextBox.Location = new System.Drawing.Point(131, 119);
             this.par2TextBox.Name = "par2TextBox";
             this.par2TextBox.Size = new System.Drawing.Size(54, 23);
             this.par2TextBox.TabIndex = 19;
@@ -482,99 +559,17 @@ namespace OPR
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.resultlabel);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.chart);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.resultlabel);
             this.groupBox4.Location = new System.Drawing.Point(558, 14);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(380, 445);
+            this.groupBox4.Size = new System.Drawing.Size(388, 458);
             this.groupBox4.TabIndex = 21;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Результат";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label11.Location = new System.Drawing.Point(343, 275);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(18, 15);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "x1";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label9.Location = new System.Drawing.Point(21, 24);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(20, 15);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "x2";
-            // 
-            // chart
-            // 
-            this.chart.BackColor = System.Drawing.Color.Transparent;
-            this.chart.BorderSkin.BackColor = System.Drawing.Color.DarkGray;
-            this.chart.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
-            this.chart.BorderSkin.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea3.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea3.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Triangle;
-            chartArea3.AxisX.Interval = 1D;
-            chartArea3.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea3.AxisX.LabelAutoFitMaxFontSize = 9;
-            chartArea3.AxisX.LabelAutoFitMinFontSize = 7;
-            chartArea3.AxisX.LabelAutoFitStyle = ((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles)(((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.DecreaseFont | System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.StaggeredLabels) 
-            | System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.LabelsAngleStep90)));
-            chartArea3.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.WhiteSmoke;
-            chartArea3.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea3.AxisX.TitleForeColor = System.Drawing.SystemColors.Highlight;
-            chartArea3.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Triangle;
-            chartArea3.AxisY.LabelAutoFitMaxFontSize = 9;
-            chartArea3.AxisY.LabelAutoFitMinFontSize = 7;
-            chartArea3.AxisY.LabelAutoFitStyle = ((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles)((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.DecreaseFont | System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.StaggeredLabels)));
-            chartArea3.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.WhiteSmoke;
-            chartArea3.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea3.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea3.AxisY.TitleForeColor = System.Drawing.SystemColors.Highlight;
-            chartArea3.BorderColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea3);
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.chart.Legends.Add(legend3);
-            this.chart.Location = new System.Drawing.Point(6, 31);
-            this.chart.Name = "chart";
-            series3.BorderWidth = 4;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.SystemColors.Highlight;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            dataPoint5.BorderWidth = 0;
-            dataPoint5.Color = System.Drawing.Color.Transparent;
-            dataPoint5.IsEmpty = true;
-            series3.Points.Add(dataPoint5);
-            series3.Points.Add(dataPoint6);
-            series3.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.No;
-            series3.SmartLabelStyle.CalloutBackColor = System.Drawing.Color.White;
-            series3.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.Round;
-            series3.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.Box;
-            series3.SmartLabelStyle.IsMarkerOverlappingAllowed = true;
-            series3.SmartLabelStyle.IsOverlappedHidden = false;
-            series3.SmartLabelStyle.MaxMovingDistance = 0D;
-            series3.YValuesPerPoint = 4;
-            this.chart.Series.Add(series3);
-            this.chart.Size = new System.Drawing.Size(336, 276);
-            this.chart.TabIndex = 23;
             // 
             // button2
             // 
@@ -584,60 +579,155 @@ namespace OPR
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(20, 398);
+            this.button2.Location = new System.Drawing.Point(245, 28);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(341, 25);
+            this.button2.Size = new System.Drawing.Size(116, 25);
             this.button2.TabIndex = 22;
             this.button2.Text = "Показать таблицу точек\r\n";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label11.Location = new System.Drawing.Point(343, 345);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(18, 15);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "x1";
+            // 
             // resultlabel
             // 
-            this.resultlabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultlabel.Location = new System.Drawing.Point(20, 310);
+            this.resultlabel.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.resultlabel.Location = new System.Drawing.Point(32, 360);
             this.resultlabel.Name = "resultlabel";
-            this.resultlabel.Size = new System.Drawing.Size(341, 77);
+            this.resultlabel.Size = new System.Drawing.Size(329, 83);
             this.resultlabel.TabIndex = 21;
             this.resultlabel.Text = "F{x1, x2)";
             this.resultlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label9.Location = new System.Drawing.Point(33, 28);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(20, 15);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "x2";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // chart
+            // 
+            this.chart.BackColor = System.Drawing.Color.Transparent;
+            this.chart.BorderSkin.BackColor = System.Drawing.Color.DarkGray;
+            this.chart.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
+            this.chart.BorderSkin.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea1.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Triangle;
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 9;
+            chartArea1.AxisX.LabelAutoFitMinFontSize = 7;
+            chartArea1.AxisX.LabelAutoFitStyle = ((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles)((System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.DecreaseFont | System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.LabelsAngleStep90)));
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.WhiteSmoke;
+            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea1.AxisX.TitleForeColor = System.Drawing.SystemColors.Highlight;
+            chartArea1.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Triangle;
+            chartArea1.AxisY.LabelAutoFitMaxFontSize = 9;
+            chartArea1.AxisY.LabelAutoFitMinFontSize = 7;
+            chartArea1.AxisY.LabelAutoFitStyle = System.Windows.Forms.DataVisualization.Charting.LabelAutoFitStyles.DecreaseFont;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.WhiteSmoke;
+            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.TitleForeColor = System.Drawing.SystemColors.Highlight;
+            chartArea1.BorderColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
+            this.chart.Location = new System.Drawing.Point(21, 43);
+            this.chart.Name = "chart";
+            series1.BorderWidth = 4;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.SystemColors.Highlight;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            dataPoint1.BorderWidth = 0;
+            dataPoint1.Color = System.Drawing.Color.Transparent;
+            dataPoint1.IsEmpty = true;
+            series1.Points.Add(dataPoint1);
+            series1.Points.Add(dataPoint2);
+            series1.SmartLabelStyle.AllowOutsidePlotArea = System.Windows.Forms.DataVisualization.Charting.LabelOutsidePlotAreaStyle.No;
+            series1.SmartLabelStyle.CalloutBackColor = System.Drawing.Color.White;
+            series1.SmartLabelStyle.CalloutLineAnchorCapStyle = System.Windows.Forms.DataVisualization.Charting.LineAnchorCapStyle.Round;
+            series1.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.Box;
+            series1.SmartLabelStyle.IsMarkerOverlappingAllowed = true;
+            series1.SmartLabelStyle.IsOverlappedHidden = false;
+            series1.SmartLabelStyle.MaxMovingDistance = 0D;
+            series1.YValuesPerPoint = 4;
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(332, 314);
+            this.chart.TabIndex = 23;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.listBox1);
-            this.groupBox5.Location = new System.Drawing.Point(12, 468);
+            this.groupBox5.Location = new System.Drawing.Point(12, 478);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(926, 228);
+            this.groupBox5.Size = new System.Drawing.Size(934, 163);
             this.groupBox5.TabIndex = 22;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "История";
             // 
             // listBox1
             // 
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.HorizontalScrollbar = true;
             this.listBox1.IntegralHeight = false;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(22, 26);
+            this.listBox1.Location = new System.Drawing.Point(22, 24);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(885, 182);
+            this.listBox1.Size = new System.Drawing.Size(906, 135);
             this.listBox1.TabIndex = 0;
             this.listBox1.TabStop = false;
+            // 
+            // enableStartPoint
+            // 
+            this.enableStartPoint.AutoSize = true;
+            this.enableStartPoint.Location = new System.Drawing.Point(302, 63);
+            this.enableStartPoint.Name = "enableStartPoint";
+            this.enableStartPoint.Size = new System.Drawing.Size(166, 19);
+            this.enableStartPoint.TabIndex = 28;
+            this.enableStartPoint.Text = "Указать начальную точку";
+            this.enableStartPoint.UseVisualStyleBackColor = true;
+            this.enableStartPoint.CheckStateChanged += new System.EventHandler(this.enableStartPoint_CheckStateChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(950, 708);
+            this.ClientSize = new System.Drawing.Size(963, 657);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -698,8 +788,15 @@ namespace OPR
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox par2TextBox;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.CheckBox enableStartPoint;
     }
 }
 

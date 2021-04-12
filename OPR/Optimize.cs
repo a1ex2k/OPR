@@ -7,9 +7,9 @@ namespace OPR
 {
     internal abstract class Optimize
     {
-        public class InputData
+        public class BasicData
         {
-            public InputData(MathExpr function, Criteria criteria, MathExpr[] restrictions, VarBounds bounds)
+            public BasicData(MathExpr function, Criteria criteria, MathExpr[] restrictions, VarBounds bounds)
             {
                 this.Function = function;
                 this.Restrictions = restrictions;
@@ -36,11 +36,17 @@ namespace OPR
                 public double X2Upper { get; }
                 public double X2Interval { get; }
                 public double X1Interval { get; }
+                public bool IsInRange(double x1, double x2)
+                {
+                    if (x1 >= X1Lower && x1 <= X1Upper && x2 >= X2Lower && x2 <= X2Upper) return true;
+                    return false;
+                }
                 public override string ToString()
                 {
                     return $"[{X1Lower},{X1Upper}; {X2Lower},{X2Upper}]";
                 }
             }
+
             public enum Criteria : int
             {
                 Minimum = -1, Maximum = 1,
@@ -56,14 +62,15 @@ namespace OPR
                     }
                 return match;
             }
+
         }
-        public InputData Input { get; }
+        public BasicData Data { get; }
         public Point Result { get; protected set; }
         public uint Iterations { get; protected set; }
         public double Duration { get; protected set; }
-        public Optimize(InputData data)
+        public Optimize(BasicData data)
         {
-            Input = data;
+            Data = data;
         }
         public abstract void RunOptimization();
     }
@@ -74,8 +81,9 @@ namespace OPR
         public double[] X1Array { get; private set; }
         public double[] X2Array { get; private set; }
         private readonly int e;
-        public GridBruteForce(InputData input, double step) : base(input)
+        public GridBruteForce(BasicData input, double step) : base(input)
         {
+            if (step <= 0) throw new ArgumentException();
             this.StepSize = Math.Abs(step);
             this.e = 1 + MathExpr.GetPrecision(StepSize);
         }
@@ -84,26 +92,26 @@ namespace OPR
             Stopwatch stw = new Stopwatch();
             stw.Start();
 
-            int x1Count = 1 + (int)(Input.Bounds.X1Interval / StepSize);
-            int x2Count = 1 + (int)(Input.Bounds.X2Interval / StepSize);
+            int x1Count = 1 + (int)(Data.Bounds.X1Interval / StepSize);
+            int x2Count = 1 + (int)(Data.Bounds.X2Interval / StepSize);
             Iterations = (uint)(x1Count * x2Count);
             X1Array = new double[x1Count];
             X2Array = new double[x2Count];
             for (int x1Step = 0; x1Step < x1Count; x1Step++)
-                X1Array[x1Step] = MathExpr.Round(Input.Bounds.X1Lower + StepSize * x1Step, e);
+                X1Array[x1Step] = MathExpr.Round(Data.Bounds.X1Lower + StepSize * x1Step, e);
             for (int x2Step = 0; x2Step < x2Count; x2Step++)
-                X2Array[x2Step] = MathExpr.Round(Input.Bounds.X2Lower + StepSize * x2Step, e);
+                X2Array[x2Step] = MathExpr.Round(Data.Bounds.X2Lower + StepSize * x2Step, e);
 
             Matrix = new double[X1Array.Length, X2Array.Length];
             int opt_i = 0; int opt_j = 0;
             for (int i = 0; i < Matrix.GetLength(0); i++)
                 for (int j = 0; j < Matrix.GetLength(1); j++)
                 {
-                    Matrix[i, j] = Input.Function.Calc(X1Array[i], X2Array[j]);
-                    if (Input.CheckRestrictions(X1Array[i], X2Array[j]))
+                    Matrix[i, j] = Data.Function.Calc(X1Array[i], X2Array[j]);
+                    if (Data.CheckRestrictions(X1Array[i], X2Array[j]))
                     {
-                        if ((Input.OptCriteria == InputData.Criteria.Minimum && Matrix[i, j] < Matrix[opt_i, opt_j]) ||
-                        (Input.OptCriteria == InputData.Criteria.Maximum && Matrix[i, j] > Matrix[opt_i, opt_j]))
+                        if ((Data.OptCriteria == BasicData.Criteria.Minimum && Matrix[i, j] < Matrix[opt_i, opt_j]) ||
+                        (Data.OptCriteria == BasicData.Criteria.Maximum && Matrix[i, j] > Matrix[opt_i, opt_j]))
                         { opt_i = i; opt_j = j; }
                     }
                 }
@@ -116,8 +124,9 @@ namespace OPR
     internal class MonteCarlo : Optimize
     {
         public List<Point> Points { get; private set; }
-        public MonteCarlo(InputData input, uint iterCount) : base(input)
+        public MonteCarlo(BasicData input, uint iterCount) : base(input)
         {
+            if (iterCount == 0) throw new ArgumentException();
             Iterations = iterCount;
         }
         public override void RunOptimization()
@@ -125,23 +134,22 @@ namespace OPR
             Stopwatch stw = new Stopwatch();
             stw.Start();
             Points = new List<Point>();
-            double _y=0, y, x1, x2;
-            if (Input.OptCriteria == InputData.Criteria.Minimum) _y = double.MaxValue;
-            if (Input.OptCriteria == InputData.Criteria.Maximum) _y = double.MinValue;
+            double _y = 0, y, x1, x2;
+            if (Data.OptCriteria == BasicData.Criteria.Minimum) _y = double.MaxValue;
+            if (Data.OptCriteria == BasicData.Criteria.Maximum) _y = double.MinValue;
             Point best = null;
             var rnd = new Random();
             for (int iter = 0; iter < Iterations; iter++)
             {
-                x1 = Input.Bounds.X1Lower + Input.Bounds.X1Interval * rnd.NextDouble();
-                x2 = Input.Bounds.X2Lower + Input.Bounds.X2Interval * rnd.NextDouble();
-                if (Input.CheckRestrictions(x1, x2))
+                x1 = Data.Bounds.X1Lower + Data.Bounds.X1Interval * rnd.NextDouble();
+                x2 = Data.Bounds.X2Lower + Data.Bounds.X2Interval * rnd.NextDouble();
+                if (Data.CheckRestrictions(x1, x2))
                 {
-                    y = Input.Function.Calc(x1, x2);
-                    if ((Input.OptCriteria == InputData.Criteria.Minimum && y < _y) ||
-                        (Input.OptCriteria == InputData.Criteria.Maximum && y > _y))
+                    y = Data.Function.Calc(x1, x2);
+                    if ((Data.OptCriteria == BasicData.Criteria.Minimum && y < _y) ||
+                        (Data.OptCriteria == BasicData.Criteria.Maximum && y > _y))
                     {
-                        best = new Point(x1, x2, y);
-                        _y = y;
+                        best = new Point(x1, x2, y); _y = y;
                     }
                     Points.Add(new Point(x1, x2, y));
                 }
@@ -152,4 +160,126 @@ namespace OPR
             Result = best;
         }
     }
+
+    internal class HookeJeeves : Optimize
+    {
+        public double Epsylon { get; private set; }
+        double step1, step2;
+        public List<Point> Points { get; private set; }
+        public Point StartPoint { get; private set; } = null;
+        const int iterForRnd = 500;
+        const double div = 2;
+
+        public HookeJeeves(BasicData input, double epsylon, double step1, double step2, Point startPoint = null) : base(input)
+        {
+            if (epsylon <= 0 || step1 <= 0 || step1 <= 0 || step1 <= epsylon || step2 <= epsylon) throw new ArgumentException();
+            StartPoint = startPoint;
+            Epsylon = epsylon;
+            this.step1 = step1;
+            this.step2 = step2;
+        }
+        private bool IsBetter(double yCurrent, double yPrev)
+        {
+            if ((Data.OptCriteria == BasicData.Criteria.Minimum && yCurrent < yPrev) ||
+               (Data.OptCriteria == BasicData.Criteria.Maximum && yCurrent > yPrev))
+                return true;
+            return false;
+        }
+
+        private void CheckStartPoint()
+        {
+            if (StartPoint == null || !Data.CheckRestrictions(StartPoint.X1, StartPoint.X2))
+            {
+                var rnd = new Random();
+                for (int iter = 0; iter < iterForRnd; iter++)
+                {
+                    double x1 = Data.Bounds.X1Lower + Data.Bounds.X1Interval * rnd.NextDouble();
+                    double x2 = Data.Bounds.X2Lower + Data.Bounds.X2Interval * rnd.NextDouble();
+                    double y;
+                    if (Data.CheckRestrictions(x1, x2))
+                    {
+                        y = Data.Function.Calc(x1, x2); StartPoint = new Point(x1, x2, y); break;
+                    }
+                }
+            }
+            if (StartPoint == null) throw new ArgumentOutOfRangeException();
+        }
+
+        public override void RunOptimization()
+        {
+            Stopwatch stw = new Stopwatch();
+            stw.Start();
+
+            CheckStartPoint();
+            Points = new List<Point>();
+            Points.Add(StartPoint);
+            uint iter = 0;
+            Point prevPoint = StartPoint;
+            int e = 3 + MathExpr.GetPrecision(Epsylon);
+            while (step1 > Epsylon || step2 > Epsylon)
+            {
+                iter++;
+                bool x1_success = false;
+                bool x2_success = false;
+                double pr_x2 = MathExpr.Round(prevPoint.X2, e);
+                double x1Upper = MathExpr.Round(prevPoint.X1 + step1, e);
+                if (Data.CheckRestrictions(x1Upper, pr_x2))
+                {
+                    double y = Data.Function.Calc(x1Upper, pr_x2);
+                    if (IsBetter(y, prevPoint.Y))
+                    {
+                        prevPoint = new Point(x1Upper, pr_x2, y);
+                        x1_success = true;
+                    }
+                }
+                double x1Lower = MathExpr.Round(prevPoint.X1 - step1, e);
+                if (Data.CheckRestrictions(x1Lower, pr_x2))
+                {
+                    double y = Data.Function.Calc(x1Lower, pr_x2);
+                    if (IsBetter(y, prevPoint.Y))
+                    {
+                        prevPoint = new Point(x1Lower, pr_x2, y);
+                        x1_success = true;
+                    }
+                }
+                if (!x1_success)
+                {
+                    step1 /= div;
+                    double x2Upper = MathExpr.Round(prevPoint.X2 + step2, e);
+                    double pr_x1 = MathExpr.Round(prevPoint.X1, e); 
+                    if (Data.CheckRestrictions(pr_x1, x2Upper))
+                    {
+                        double y = Data.Function.Calc(pr_x1, x2Upper);
+                        if (IsBetter(y, prevPoint.Y))
+                        {
+                            prevPoint = new Point(pr_x1, x2Upper, y);
+                            x2_success = true;
+                        }
+                    }
+                    double x2Lower = MathExpr.Round(prevPoint.X2 - step2, e);
+                    if (Data.CheckRestrictions(pr_x1, x2Lower))
+                    {
+                        double y = Data.Function.Calc(prevPoint.X1, x2Lower);
+                        if (IsBetter(y, prevPoint.Y))
+                        {
+                            prevPoint = new Point(pr_x1, x2Lower, y);
+                            x2_success = true;
+                        }
+                    }
+                }
+                Points.Add(prevPoint);
+                if (x1_success || x2_success) continue;
+                else
+                {
+                    step1 /= div;
+                    step2 /= div;
+                }
+            }
+            stw.Stop();
+            Duration = stw.Elapsed.TotalMilliseconds;
+            Result = Points.Last();
+            Iterations = iter;
+        }
+    }
+
 }

@@ -43,7 +43,7 @@ namespace OPR
                 for (int j = 0; j < x2.Length; j++)
                 {
                     dgr[i, j].Value = opt.Matrix[i, j];
-                    if (opt.Input.CheckRestrictions(x1[i], x2[j]))
+                    if (opt.Data.CheckRestrictions(x1[i], x2[j]))
                         dgr[i, j].Style.BackColor = Color.LightGreen;
                 }
             }

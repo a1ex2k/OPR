@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace OPR
 {
@@ -17,13 +19,17 @@ namespace OPR
             signcomboBox.Items.AddRange(new object[] { "<", "<=", "==", ">=", ">" });
             criteriaComboBox.Items.AddRange(new object[] { "Минимум", "Максимум" });
             signcomboBox.SelectedIndex = 3;
-            x1ltextBox.Text = "-2";
-            x1utextBox.Text = "8";
+            x1ltextBox.Text = "0";
+            x1utextBox.Text = "10";
             x2ltextBox.Text = "-5";
             x2utextBox.Text = "5";
             par1TextBox.Text = "0.2";
+            textBox4.Text = "0.2";
             par2TextBox.Text = "500";
+            textBox1.Text = "0.0001";
             funcTextBox.Text = "(x1-2)^2+(x2-1)^2";
+            textBox3.Text = "10";
+            textBox2.Text = "3";
             limitsGridView.Rows.Add(); limitsGridView.Rows.Add();
             limitsGridView[0, 0].Value = "x1-2*x2+1"; limitsGridView[1, 0].Value = ">="; limitsGridView[2, 0].Value = "2";
             limitsGridView[0, 1].Value = "x1+4*x2"; limitsGridView[1, 1].Value = ">="; limitsGridView[2, 1].Value = "3";
@@ -31,14 +37,14 @@ namespace OPR
             criteriaComboBox.SelectedIndex = methodcomboBox.SelectedIndex = 0;
         }
         private int EditingRowIndex = -1;
-        private int Method;
-        private Optimize.InputData.Criteria Criteria;
+        private int method = 0;
+        private Optimize.BasicData.Criteria crit;
         private TableForm TableForm;
         private string logstr = "";
 
-        Optimize.InputData PrepareValues()
+        Optimize.BasicData PrepareValues()
         {
-            Optimize.InputData data = null;
+            Optimize.BasicData data = null;
             try
             {
                 var func = new MathExpr(funcTextBox.Text);
@@ -50,19 +56,22 @@ namespace OPR
                     logstr += ", " + expr;
                     restr[i] = new MathExpr(expr);
                 }
-                double x1min, x1max, x2min, x2max, par_step;
-                uint par_count;
+                double x1min, x1max, x2min, x2max;
                 x1min = Double.Parse(x1ltextBox.Text);
                 x1max = Double.Parse(x1utextBox.Text);
                 x2min = Double.Parse(x2ltextBox.Text);
                 x2max = Double.Parse(x2utextBox.Text);
-                par_step = Double.Parse(par1TextBox.Text);
-                par_count = uint.Parse(par2TextBox.Text);
+                Double.Parse(par1TextBox.Text);
+                Double.Parse(textBox4.Text);
+                Double.Parse(textBox3.Text);
+                Double.Parse(textBox2.Text);
+                uint.Parse(par2TextBox.Text);
+                double par_eps = Double.Parse(textBox1.Text);
 
-                var bounds = new Optimize.InputData.VarBounds(x1min, x1max, x2min, x2max);
+                var bounds = new Optimize.BasicData.VarBounds(x1min, x1max, x2min, x2max);
                 logstr += " " + bounds;
 
-                data = new Optimize.InputData(func, Criteria, restr, bounds);
+                data = new Optimize.BasicData(func, crit, restr, bounds);
             }
             catch
             {
@@ -75,26 +84,39 @@ namespace OPR
 
         public void Run()
         {
-            Optimize.InputData data = PrepareValues();
+            Optimize.BasicData data = PrepareValues();
             if (data == null) return;
             SetChartArea(data.Bounds);
             Plotting.Isolines(data).ForEach(s => chart.Series.Add(s));
 
-            double par_step = Double.Parse(par1TextBox.Text);
-            uint par_count = uint.Parse(par2TextBox.Text);
-            
-
             Optimize opt;
-            switch (Method)
+            switch (method)
             {
-                case 0: opt = new GridBruteForce(data, par_step); logstr = $"{methodcomboBox.Text}, Шаг: {par_step} - "+ logstr; break;
-                case 1: opt = new MonteCarlo(data, par_count); logstr = $"{methodcomboBox.Text} - " + logstr; break;
+                case 0:
+                    double par_step = Double.Parse(par1TextBox.Text);
+                    double par_step2 = Double.Parse(textBox4.Text);
+                    opt = new GridBruteForce(data, par_step);
+                    logstr = $"{methodcomboBox.Text}, Шаг: {par_step} - " + logstr; break;
+                case 1:
+                    uint par_count = uint.Parse(par2TextBox.Text);
+                    opt = new MonteCarlo(data, par_count);
+                    logstr = $"{methodcomboBox.Text} - " + logstr; break;
+                case 2:
+                    double par_eps = Double.Parse(textBox1.Text);
+                    Point startPoint = null;
+                    if (enableStartPoint.Checked == true)
+                    {
+                        double x1_0 = Double.Parse(textBox3.Text);
+                        double x2_0 = Double.Parse(textBox2.Text);
+                        startPoint = new Point(x1_0, x2_0, data.Function.Calc(x1_0, x2_0));
+                    }
+                    par_step = Double.Parse(par1TextBox.Text);
+                    par_step2 = Double.Parse(textBox4.Text);
+                    opt = new HookeJeeves(data, par_eps, par_step, par_step2, startPoint);
+                    logstr = $"{methodcomboBox.Text}, Точность: {par_eps} " + logstr; break;
                 case 3: return; break;
-                case 4: return; break;
-                default: opt = new GridBruteForce(data, par_step); break;
+                default: return; break;
             }
-
-
 
             try
             {
@@ -104,14 +126,18 @@ namespace OPR
                 chart.Series.Add(Plotting.PlacePoint(opt.Result, Color.Crimson));
 
                 TableForm = new TableForm();
-                switch (Method)
+                if (method == 2) chart.Series.Add(Plotting.PlacePoints(((HookeJeeves)opt).Points, "path", Color.Black, 3, MarkerStyle.Star5, SeriesChartType.Line));
+                Parallel.Invoke(() =>
                 {
-                    case 0: TableForm.Populate((GridBruteForce)opt); break;
-                    case 1: TableForm.Populate(((MonteCarlo)opt).Points);  break;
-                    case 3: return; break;
-                    case 4: return; break;
-                    default: break;
-                }
+                    switch (method)
+                    {
+                        case 0: TableForm.Populate((GridBruteForce)opt); break;
+                        case 1: TableForm.Populate(((MonteCarlo)opt).Points); break;
+                        case 2: TableForm.Populate(((HookeJeeves)opt).Points); break;
+                        case 3: return; break;
+                        default: break;
+                    }
+                });
             }
             catch (OperationCanceledException)
             {
@@ -119,24 +145,32 @@ namespace OPR
                 resultlabel.Text = "-";
                 logstr += "  -  Неудача!";
             }
-            listBox1.Items.Add(logstr+"\t\t");
+            listBox1.Items.Add(logstr + "\t\t");
             logstr = "";
         }
 
-        private void SetChartArea(Optimize.InputData.VarBounds bounds)
+        private void SetChartArea(Optimize.BasicData.VarBounds bounds)
         {
+            chart.Series.Clear();
+            chart.Series.Add("Null");
+            //chart.Series["Null"].Points.AddXY(0, 0);
             chart.ChartAreas[0].AxisX.Maximum = bounds.X1Upper;
             chart.ChartAreas[0].AxisX.Minimum = bounds.X1Lower;
             chart.ChartAreas[0].AxisY.Maximum = bounds.X2Upper;
             chart.ChartAreas[0].AxisY.Minimum = bounds.X2Lower;
             chart.ChartAreas[0].AxisX.Interval = MathExpr.Round(bounds.X1Interval / 20);
             chart.ChartAreas[0].AxisY.Interval = MathExpr.Round(bounds.X2Interval / 20);
-            chart.Series.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //  var st = new Stopwatch();
+            //  st.Start();
+
             Run();
+
+            //  st.Stop();
+            // var mmm = st.ElapsedMilliseconds;
         }
         private void limitsRemoveButton_Click(object sender, EventArgs e)
         {
@@ -178,21 +212,30 @@ namespace OPR
         {
             switch (methodcomboBox.SelectedIndex)
             {
-                case 0: label7.Text = "Шаг для перебора по сетке"; Method = 0; break;
-                case 1: label7.Text = "Количество попыток поиска"; Method = 1; break;
-                case 3: label7.Text = "-"; Method = 2; break;
-                case 4: label7.Text = "-"; Method = 3; break;
+                case 0: method = 0; break;
+                case 1: method = 1; break;
+                case 2: method = 2; break;
+                case 3: method = 3; break;
             }
         }
         private void criteriaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (criteriaComboBox.SelectedIndex)
             {
-                case 0: Criteria = Optimize.InputData.Criteria.Minimum; break;
-                case 1: Criteria = Optimize.InputData.Criteria.Maximum; break;
+                case 0: crit = Optimize.BasicData.Criteria.Minimum; break;
+                case 1: crit = Optimize.BasicData.Criteria.Maximum; break;
             }
         }
 
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void enableStartPoint_CheckStateChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
